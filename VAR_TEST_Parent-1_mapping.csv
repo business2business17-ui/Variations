@@ -1,0 +1,10 @@
+﻿feed_row,role,sku,parent_sku,asin,COLOR (print),COMPATIBLE_PHONE_MODELS,print_no,action
+7,Parent,Parent-1,,,,,,Create or Replace (Full Update)
+8,Child,22300116-F02Rou001q00002,Parent-1,B0HM3NM988,Samurai Calligraphy,iPhone 13,00002,Edit (Partial Update)
+9,Child,22300118-F02Rou001q00002,Parent-1,B0HM3DHR4K,Samurai Calligraphy,iPhone 13 Pro Max,00002,Edit (Partial Update)
+10,Child,22300195-F02Rou001q00002,Parent-1,B0HM3NHPC4,Samurai Calligraphy,iPhone 14,00002,Edit (Partial Update)
+11,Child,22300198-F02Rou001q00002,Parent-1,B0HM3LV6CB,Samurai Calligraphy,iPhone 14 Pro Max,00002,Edit (Partial Update)
+12,Child,22300116-F02Rou001q00282,Parent-1,B0HN2QJK5K,Vintage Racing,iPhone 13,00282,Edit (Partial Update)
+13,Child,22300118-F02Rou001q00282,Parent-1,B0HN4VQP57,Vintage Racing,iPhone 13 Pro Max,00282,Edit (Partial Update)
+14,Child,22300195-F02Rou001q00282,Parent-1,B0HN2THM69,Vintage Racing,iPhone 14,00282,Edit (Partial Update)
+15,Child,22300198-F02Rou001q00282,Parent-1,B0HN2RPLTS,Vintage Racing,iPhone 14 Pro Max,00282,Edit (Partial Update)

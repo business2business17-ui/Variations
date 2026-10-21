@@ -21,12 +21,15 @@
 
 Риск: список допустимых значений Color в шаблоне — цвета (Black, Gray, …). Пилот проверяет, примет ли Amazon название принта.
 
-## 3. Пилот (собран на шаблоне из отчёта Amazon; `VAR_PILOT_223_F02_iPhone13-14_Samurai-VintageRacing.xlsm`)
-1 parent + 8 child = 9 строк: серия 223, Black Smoky Matte (F02), принты Samurai Calligraphy (q2) и Vintage Racing (q282) × iPhone 13 / 13 Pro Max / 14 / 14 Pro Max. Состав — в `VAR_PILOT_mapping.csv`.
-- Parent: SKU `VAR22300-F02-IP13-14-01`, GTIN Exempt (как в Create-фидах), без цены/остатка, без Color и модели; контент — только факты из существующих листингов.
-- Child: SKU, Product Type, Edit (Partial Update), Child, Parent SKU, тема, имя, бренд, ASIN, Color (принт), модель. Цены/офферы не трогаются.
-- Проверено: изменён только лист Template (остальные части файла побайтово те же), строки 1–6 не менялись; SKU уникальны; ASIN совпадают с отчётом Amazon; в Template оставлены только 9 строк пилота (из 5743).
-- Статус: **не загружался в Amazon**. Перед загрузкой — тест на этих 9 строках.
+## 3. Тест `VAR_TEST_Parent-1.xlsm` (шаблон из отчёта Amazon)
+9 строк: **Parent-1** (Create or Replace, Full Update) + 8 child (Edit, Partial Update). Состав и ASIN — в `VAR_TEST_Parent-1_mapping.csv`.
+- Связка: Variation Theme `COLOR/COMPATIBLE_PHONE_MODELS`; у child Color = название принта (Samurai Calligraphy, Vintage Racing), Compatible Phone Models = iPhone 13 / 13 Pro Max / 14 / 14 Pro Max.
+- Parent Title (69 симв.): `MOBILIUS Black Smoky Matte Case for iPhone 13 and 14, Printed Designs`
+- Item Highlight (107): `Samurai Calligraphy, Vintage Racing, 13 Pro Max, 14 Pro Max, magnetic ring compatible with MagSafe chargers`
+- Bullet (один): `Prints and models: Choose Samurai Calligraphy or Vintage Racing for iPhone 13, iPhone 13 Pro Max, iPhone 14 or iPhone 14 Pro Max`
+- Description (988): принты и модели, MagSafe, матовый корпус, материал, назначение — только факты из живых листингов.
+- Требования (rules.json, 2026-10-06): Title ≤ 75 (Item Highlights работают только при этом), слово не более 2 раз; Highlight ≤ 125, фразы через запятую; Bullet 11–254, с заглавной, с заголовком, без точки; Description ≤ 2000, без HTML. Скрипт сборки проверяет эти лимиты. Один буллет вместо рекомендуемых трёх (BUL-MIN) — по решению.
+- Parent без цены, остатка, Color и модели. Меняется только лист Template, строки 1–6 и остальные листы не тронуты. В Amazon не загружался.
 
 ## 4. Открытые решения (нужны до масштабирования)
 1. Что объединяет семейство (parent): в пилоте — серия+цвет чехла+поколение, дети = принт × модель. Пока не подтверждено.
