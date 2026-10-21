@@ -8,16 +8,24 @@
 - **№ принта (qNNNNN) совпадает между сериями** (223 q124 «Football Runner» = 215 q124 «Football Run»), названия в листингах местами различаются — ключом надо считать номер принта. 187 принтов, в среднем 30 SKU на принт (макс. 60), у 163 принтов больше 20 SKU.
 - 15 моделей iPhone: 13 (116), 13 Pro Max (118), 14 (195), 14 Pro Max (198), 15 (281), 15 Pro (283), 15 Pro Max (284), 16 (375), 16 Plus (376), 16 Pro (377), 16 Pro Max (378), 16e/17e (415U), 17 (445), 17 Pro/18 Pro (447U), 17 Pro Max/18 Pro Max (448U).
 
+## 1а. Отчёт Amazon `US Category+Listings+Report_10-21-2026.xlsm` (Cases-ASIN-SKU-Inventory, main)
+- Это актуальный шаблон Amazon (389 колонок, на 81 больше старого, старые все на месте) с живыми данными: 5743 SKU, все Active, у всех Listing Action = Edit (Partial Update). Строки 1–6 те же, данные с 7-й; перед SKU две справочные колонки (Status, Title).
+- 5613 SKU `CELLULAR_PHONE_CASE` (5612 наших 223/215 + 1 чужой `3I-XT27-Q6AG`) и 130 SKU `PORTABLE_ELECTRONIC_DEVICE_COVER` (серии 406516/406517, не наши).
+- **Вариаций сейчас нет ни у одного SKU** (Parentage, Parent SKU, Variation Theme пустые). Поля Style, Theme, Model Name, Case Type тоже пусты.
+- Живые значения совпадают с фидами: Color = Clear 1959 (F05 и серия 215 оба «Clear», отличаются Finish Type: Matte / Smooth), Beige 1485, Black 1132, Gray 915, Orange 122; модели iPhone 13…17.
+- Картинки уже на Amazon (`m.media-amazon.com`) — для parent использую их.
+- Новое обязательное поле шаблона `Dangerous Goods Regulations` у наших листингов пустое; для parent не заполнено (значение не придумываю) — возможная ошибка при Full Update.
+
 ## 2. Тема вариации
 `COLOR/COMPATIBLE_PHONE_MODELS` есть в списке допустимых тем шаблона. По решению: в `COLOR` пишется **название принта**, в `COMPATIBLE_PHONE_MODELS` — модель iPhone. Parent = Create or Replace (Full Update), Child = Edit (Partial Update), ≤ 20 SKU в семействе.
 
 Риск: список допустимых значений Color в шаблоне — цвета (Black, Gray, …). Пилот проверяет, примет ли Amazon название принта.
 
-## 3. Пилот (`VAR_PILOT_223_F02_iPhone13-14_Samurai-VintageRacing.xlsm`)
+## 3. Пилот (собран на шаблоне из отчёта Amazon; `VAR_PILOT_223_F02_iPhone13-14_Samurai-VintageRacing.xlsm`)
 1 parent + 8 child = 9 строк: серия 223, Black Smoky Matte (F02), принты Samurai Calligraphy (q2) и Vintage Racing (q282) × iPhone 13 / 13 Pro Max / 14 / 14 Pro Max. Состав — в `VAR_PILOT_mapping.csv`.
 - Parent: SKU `VAR22300-F02-IP13-14-01`, GTIN Exempt (как в Create-фидах), без цены/остатка, без Color и модели; контент — только факты из существующих листингов.
 - Child: SKU, Product Type, Edit (Partial Update), Child, Parent SKU, тема, имя, бренд, ASIN, Color (принт), модель. Цены/офферы не трогаются.
-- Проверено: строки 1–6 и все листы кроме Template побайтово не менялись; SKU уникальны; ASIN совпадают с отчётом; тема есть в выпадающем списке.
+- Проверено: изменён только лист Template (остальные части файла побайтово те же), строки 1–6 не менялись; SKU уникальны; ASIN совпадают с отчётом Amazon; в Template оставлены только 9 строк пилота (из 5743).
 - Статус: **не загружался в Amazon**. Перед загрузкой — тест на этих 9 строках.
 
 ## 4. Открытые решения (нужны до масштабирования)
