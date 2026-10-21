@@ -21,18 +21,17 @@
 
 Риск: список допустимых значений Color в шаблоне — цвета (Black, Gray, …). Пилот проверяет, примет ли Amazon название принта.
 
-## 3. Тест `VAR_TEST_Parent-1.xlsm` (шаблон из отчёта Amazon)
-9 строк: **Parent-1** (Create or Replace, Full Update) + 8 child (Edit, Partial Update). Состав и ASIN — в `VAR_TEST_Parent-1_mapping.csv`.
-- Связка: Variation Theme `COLOR/COMPATIBLE_PHONE_MODELS`; у child Color = название принта (Samurai Calligraphy, Vintage Racing), Compatible Phone Models = iPhone 13 / 13 Pro Max / 14 / 14 Pro Max.
-- Parent Title (69 симв.): `MOBILIUS Black Smoky Matte Case for iPhone 13 and 14, Printed Designs`
-- Item Highlight (107): `Samurai Calligraphy, Vintage Racing, 13 Pro Max, 14 Pro Max, magnetic ring compatible with MagSafe chargers`
-- Bullets (3): 1) `Prints and models: Choose Samurai Calligraphy or Vintage Racing for iPhone 13, iPhone 13 Pro Max, iPhone 14 or iPhone 14 Pro Max`; 2) MagSafe compatible magnetic ring (N45, 2300 Gs, 55/46 mm); 3) Smoky matte back (2.12 mm TPU + polycarbonate, camera cutout)
-- Description (988): принты и модели, MagSafe, матовый корпус, материал, назначение — только факты из живых листингов.
-- Требования (rules.json, 2026-10-06): Title ≤ 75 (Item Highlights работают только при этом), слово не более 2 раз; Highlight ≤ 125, фразы через запятую; Bullet 11–254, с заглавной, с заголовком, без точки; Description ≤ 2000, без HTML. Скрипт сборки проверяет эти лимиты.
-- Parent без цены, остатка, Color и модели. Меняется только лист Template, строки 1–6 и остальные листы не тронуты. В Amazon не загружался.
+## 3. Схема и тест `VAR_TEST_Parent-1.xlsm`
+**Схема (утверждена):** Parent = принт × поколение iPhone (13/14/15/16/17), внутри смешиваются все типы чехлов и обе серии (935 семейств, максимум 16 child, лимит 20 соблюдён). Тип чехла кодируется в Color из кода SKU, чтобы пара (Color, модель) была уникальной:
+`{Принт} - {тип}`; типы: F02 Black Smoky Matte, F06 Gray Frosted Matte, F24 Beige Matte, F05 Clear Matte, F16 Orange, 215/001 Clear. Для одной пары «принт + модель» в Amazon бывает 2–5 типов (1806 пар), без этого child были бы дубликатами.
 
-## 4. Открытые решения (нужны до масштабирования)
-1. Что объединяет семейство (parent): в пилоте — серия+цвет чехла+поколение, дети = принт × модель. Пока не подтверждено.
-2. Смешивание серий 223+215: при COLOR=принт пара (принт, модель) у 223 и 215 совпадёт → дубликат темы. Нужно решить, чем различать (например отдельные parent по серии, либо другая тема).
-3. Parent SKU-нейминг и главное изображение parent.
-4. Child-строки Partial Update: оставить имя/бренд/ASIN или только SKU+связь.
+**Тест:** Parent-1 (Create or Replace, Full Update) + 10 child (Edit, Partial Update): принт Little Lamb (q86) × iPhone 13 / 13 Pro Max × 5 типов (223 F02/F06/F24/F05 + 215 Clear). Состав и ASIN — в `VAR_TEST_Parent-1_mapping.csv`.
+- Child-строки: SKU, Product Type, действие, Parentage Level, Parent SKU, Variation Theme, Brand, Color, Compatible Phone Models. Без имени и ASIN. Item Name в шаблоне помечен Required — если Amazon потребует, добавим.
+- Parent Title (74): `MOBILIUS MagSafe Compatible Case for iPhone 13 and 13 Pro Max, Little Lamb`
+- Item Highlight (103): `Black Smoky Matte, Gray Frosted Matte, Beige Matte, Clear Matte, Clear, 2.12 mm TPU back, camera cutout`
+- 3 Bullets: принт/модели/типы чехлов; MagSafe-кольцо; TPU-задняя панель 2.12 мм с вырезом камеры.
+- Description (788): модели, принт, типы, MagSafe, материал, назначение. Тексты Parent содержат только то, что верно для всех типов 223 и 215 (материал только TPU; поликарбонат, Finish и цвет не указаны).
+- Проверки: Title ≤ 75 (74), слово не более 2 раз, Highlight ≤ 125, буллеты 11–254, Description ≤ 2000; пары (Color, модель) уникальны; модели совпадают с отчётом Amazon; изменён только лист Template, строки 1–6 и остальные листы не тронуты. В Amazon не загружался.
+- `Dangerous Goods Regulations` относится только к `PORTABLE_ELECTRONIC_DEVICE_COVER`; для `CELLULAR_PHONE_CASE` не нужно.
+- Риск: Color содержит принт и тип, а не чистый цвет — проверить тестовой загрузкой.
+
