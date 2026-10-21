@@ -14,7 +14,7 @@
 - **Вариаций сейчас нет ни у одного SKU** (Parentage, Parent SKU, Variation Theme пустые). Поля Style, Theme, Model Name, Case Type тоже пусты.
 - Живые значения совпадают с фидами: Color = Clear 1959 (F05 и серия 215 оба «Clear», отличаются Finish Type: Matte / Smooth), Beige 1485, Black 1132, Gray 915, Orange 122; модели iPhone 13…17.
 - Картинки уже на Amazon (`m.media-amazon.com`) — для parent использую их.
-- Новое обязательное поле шаблона `Dangerous Goods Regulations` у наших листингов пустое; для parent не заполнено (значение не придумываю) — возможная ошибка при Full Update.
+- `Dangerous Goods Regulations`: поле «Required» в Data Definitions относится только к `PORTABLE_ELECTRONIC_DEVICE_COVER` (его выпадающий список и правило обязательности привязаны только к этому типу); для `CELLULAR_PHONE_CASE` списка и правила нет, поле остаётся пустым.
 
 ## 2. Тема вариации
 `COLOR/COMPATIBLE_PHONE_MODELS` есть в списке допустимых тем шаблона. По решению: в `COLOR` пишется **название принта**, в `COMPATIBLE_PHONE_MODELS` — модель iPhone. Parent = Create or Replace (Full Update), Child = Edit (Partial Update), ≤ 20 SKU в семействе.
@@ -26,9 +26,9 @@
 - Связка: Variation Theme `COLOR/COMPATIBLE_PHONE_MODELS`; у child Color = название принта (Samurai Calligraphy, Vintage Racing), Compatible Phone Models = iPhone 13 / 13 Pro Max / 14 / 14 Pro Max.
 - Parent Title (69 симв.): `MOBILIUS Black Smoky Matte Case for iPhone 13 and 14, Printed Designs`
 - Item Highlight (107): `Samurai Calligraphy, Vintage Racing, 13 Pro Max, 14 Pro Max, magnetic ring compatible with MagSafe chargers`
-- Bullet (один): `Prints and models: Choose Samurai Calligraphy or Vintage Racing for iPhone 13, iPhone 13 Pro Max, iPhone 14 or iPhone 14 Pro Max`
+- Bullets (3): 1) `Prints and models: Choose Samurai Calligraphy or Vintage Racing for iPhone 13, iPhone 13 Pro Max, iPhone 14 or iPhone 14 Pro Max`; 2) MagSafe compatible magnetic ring (N45, 2300 Gs, 55/46 mm); 3) Smoky matte back (2.12 mm TPU + polycarbonate, camera cutout)
 - Description (988): принты и модели, MagSafe, матовый корпус, материал, назначение — только факты из живых листингов.
-- Требования (rules.json, 2026-10-06): Title ≤ 75 (Item Highlights работают только при этом), слово не более 2 раз; Highlight ≤ 125, фразы через запятую; Bullet 11–254, с заглавной, с заголовком, без точки; Description ≤ 2000, без HTML. Скрипт сборки проверяет эти лимиты. Один буллет вместо рекомендуемых трёх (BUL-MIN) — по решению.
+- Требования (rules.json, 2026-10-06): Title ≤ 75 (Item Highlights работают только при этом), слово не более 2 раз; Highlight ≤ 125, фразы через запятую; Bullet 11–254, с заглавной, с заголовком, без точки; Description ≤ 2000, без HTML. Скрипт сборки проверяет эти лимиты.
 - Parent без цены, остатка, Color и модели. Меняется только лист Template, строки 1–6 и остальные листы не тронуты. В Amazon не загружался.
 
 ## 4. Открытые решения (нужны до масштабирования)
