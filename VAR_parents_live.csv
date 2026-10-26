@@ -1,3 +1,3 @@
-parent_sku,parent_asin,iPhone_generation,print_no,print_name,children,status
-Parent-1,B0HNT5PGXT,13,86,Little Lamb,10,live (family formed)
-Parent-2,B0HP42GQKQ,16,9,Tokyo Dragon,16,live (family formed)
+parent_sku,parent_asin,variation_family_title,children,status
+Parent-1,B0HNT5PGXT,MOBILIUS MagSafe Compatible Case for iPhone 13 and 13 Pro Max Little Lamb,10,stays on Amazon (old scheme)
+Parent-2,B0HP42GQKQ,MOBILIUS MagSafe Compatible Case for iPhone 16 Series Tokyo Dragon,16,stays on Amazon (old scheme)

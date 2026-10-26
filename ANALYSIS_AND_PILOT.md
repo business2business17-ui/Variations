@@ -51,3 +51,8 @@
 ## 7. Решения владельца (2026-10-26)
 - **Parent-1 (B0HNT5PGXT) и Parent-2 (B0HP42GQKQ) со старой схемой остаются на Amazon пока что** — не удалять, не менять без команды владельца. Их 26 child в новых файлах привязаны к новым Parent (`223-Parent-N` / `215-Parent-N`); пока новые файлы не загружены, ничего не меняется.
 - **Тема вариации должна исключать дубли.** При Color = «принт» 4869 из 5612 child имели такую же пару (Color, модель), как child в других Parent (до 5 повторов) — Amazon мог принять их за дубли. Теперь Color = `{принт} - {тип чехла}` (как у Parent-1/2); все 5612 пар (Color, модель) уникальны во всём каталоге, а не только внутри Parent.
+
+## 8. Живые семейства старой схемы (остаются на Amazon)
+- Variation family `MOBILIUS MagSafe Compatible Case for iPhone 16 Series, Tokyo Dragon` — Parent-2, ASIN B0HP42GQKQ (16 child).
+- Variation family `MOBILIUS MagSafe Compatible Case for iPhone 13 and 13 Pro Max, Little Lamb` — Parent-1, ASIN B0HNT5PGXT (10 child).
+- Их 26 child **исключены из новых файлов** (остаются в Parent-1/Parent-2). Новые файлы: 306 Parent (215 — 88, 223 — 218), 5586 child. Тестовые `215-Parent-1` и `223-Parent-1` не менялись.
