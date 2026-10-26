@@ -39,11 +39,11 @@
 ## 5. Результат загрузки Parent-1 (Amazon, 2026-10-21)
 11 из 11 SKU SUCCESS, ошибок 0. Два предупреждения у child Gray Frosted Matte — рекомендация перейти на FBA, к вариациям не относится.
 
-## 6. Тест на максимум и пачки на все семейства (обновлено 2026-10-22)
-- `VAR_TEST_Parent-2_max16.xlsm` — Parent-2 + 16 child: принт Tokyo Dragon × iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max / 16e.
-- `batches/VAR_BATCH_01…07` — Parent-3 … Parent-935, все 934 семейства кроме Parent-1; 5602 child вместе с Parent-2 (5612 − 10 в Parent-1). Файлы по ~1000 строк, семейство не делится между файлами. Загружать после успешного теста Parent-2.
-- Семейство = принт × поколение iPhone, Color = `{Принт} - {тип чехла}`. Названия принтов берутся из `215 SKU, принты, описания.xlsx` (подтверждены владельцем), для принтов, которых там нет, — из заголовков 223.
-- Parent: тексты по правилам Parent-1 (Title ≤ 74, Highlight ≤ 125, 3 буллета, Description ≤ 2000) + **Style = Theme = название принта**.
-- Принты с риском HIGH/MEDIUM из `215 Amazon policy check.xlsx` включены; риск помечен в `VAR_ALL_mapping.csv` (колонка policy_risk): 40 семейств HIGH, 64 MEDIUM.
-- `VAR_one_child_families.csv` — 23 семейства из одного child.
-- Проверка по всем файлам: SKU не повторяются, каждый child ссылается на Parent из того же файла, ≤ 20 child в семействе, пары (Color, модель) уникальны, модели совпадают с отчётом Amazon, лимиты текстов, Style/Theme заполнены, строки 1–6 и остальные листы шаблона не менялись; покрытие 5602 из 5602.
+## 6. Схема по сериям (с 2026-10-26, заменяет схему «принт × поколение»)
+- Серии раздельно: `223-Parent-N` и `215-Parent-N`, нумерация по каждой серии с 1.
+- 1 Parent = 1 модель iPhone, внутри разные принты. Для 223 дополнительно 1 Parent = 1 тип чехла (Black Smoky Matte, Gray Frosted Matte, Beige Matte, Clear Matte, Orange): тексты и материал у типов разные. Принты идут по номеру, при > 20 принтов группа делится на равные части (≤ 20 child).
+- 314 Parent: 215 — 88, 223 — 226; 5612 child (всё, включая 26 SKU из Parent-1/Parent-2: они переезжают в новые Parent).
+- Child: Color = название принта (файл 215, иначе заголовки 223), Compatible Phone Models = модель (одна на Parent), Parent SKU, бренд, Edit (Partial Update).
+- Parent: Title = `MOBILIUS {тип чехла} Case for {модель}, {принты, сколько влезает в 74 символа}`; у 6 Parent (Gray Frosted Matte на Pro Max/Plus) принт в Title не помещается — `Printed Designs`. Highlight — факты о типе чехла. Буллет 1 — принты. Буллеты 2–3 и Description из живых листингов этого типа; в Description все принты. Style = Theme = `Printed Designs` (принтов в Parent много).
+- Файлы: `VAR_TEST_series_215-Parent-1_223-Parent-1.xlsm` (по одному Parent каждой серии, 39 строк), `batches_by_series/VAR_215_*` и `VAR_223_*` (по ~1000 строк, семейство целиком в одном файле). `VAR_ALL_mapping.csv`, `VAR_parents_overview.csv`.
+- Parent-1 и Parent-2 (старая схема) остаются на Amazon пустыми после переноса child; удаление — только после вашего подтверждения.
