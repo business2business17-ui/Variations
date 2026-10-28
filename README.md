@@ -18,3 +18,7 @@
 3. `batches_by_print/VAR_BATCH_01…07` — по очереди, после успешного теста.
 
 Файлы-справочники: `VAR_ALL_mapping.csv`, `VAR_parents_overview.csv`, `VAR_parents_live.csv`, `ANALYSIS_AND_PILOT.md`, эталоны `VAR_TEST_Parent-1.xlsm`, `VAR_TEST_Parent-2_max16.xlsm`.
+
+## Вариант «Parent = модель, внутри принты» (запрос владельца)
+Сценарий покупателя: листинг своей модели → внутри выбор принта. Тема `COLOR` (в шаблоне разрешена для CELLULAR_PHONE_CASE), Color = название принта, модель — обычный атрибут. Прежние попытки с одной моделью использовали `COLOR/COMPATIBLE_PHONE_MODELS`, где у измерения «модель» одно значение; тема только `COLOR` ещё не загружалась.
+Тест: `VAR_TEST_model_COLOR_iPhone13.xlsm` — 2 Parent (`215-M13-Clear`, 19 child; `223-M13-F02`, 18 child), iPhone 13. Если соберутся — остальные модели строятся так же.
