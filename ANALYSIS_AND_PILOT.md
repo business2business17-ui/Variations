@@ -56,3 +56,6 @@
 - Variation family `MOBILIUS MagSafe Compatible Case for iPhone 16 Series, Tokyo Dragon` — Parent-2, ASIN B0HP42GQKQ (16 child).
 - Variation family `MOBILIUS MagSafe Compatible Case for iPhone 13 and 13 Pro Max, Little Lamb` — Parent-1, ASIN B0HNT5PGXT (10 child).
 - Их 26 child **исключены из новых файлов** (остаются в Parent-1/Parent-2). Новые файлы: 306 Parent (215 — 88, 223 — 218), 5586 child. Тестовые `215-Parent-1` и `223-Parent-1` не менялись.
+
+## 9. Результат загрузки теста новой схемы (Amazon, 2026-10-28)
+`VAR_TEST_series_215-Parent-1_223-Parent-1.xlsm`: 39 из 39 SKU SUCCESS, ошибок 0, предупреждений 0 (отчёт обработки). Тема `COLOR/COMPATIBLE_PHONE_MODELS` с одной моделью на Parent принята; Color = `{принт} - {тип чехла}` принят. Дальше: пачки `batches_by_series/` по очереди — сначала 215, затем 223; после каждой — отчёт Amazon.
