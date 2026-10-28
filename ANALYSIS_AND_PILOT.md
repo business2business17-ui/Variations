@@ -59,3 +59,9 @@
 
 ## 9. Результат загрузки теста новой схемы (Amazon, 2026-10-28)
 `VAR_TEST_series_215-Parent-1_223-Parent-1.xlsm`: 39 из 39 SKU SUCCESS, ошибок 0, предупреждений 0 (отчёт обработки). Тема `COLOR/COMPATIBLE_PHONE_MODELS` с одной моделью на Parent принята; Color = `{принт} - {тип чехла}` принят. Дальше: пачки `batches_by_series/` по очереди — сначала 215, затем 223; после каждой — отчёт Amazon.
+
+## 10. Итог теста single-model и новая схема (2026-10-28)
+- `223-Parent-1` (B0HPKK9CBL) и `215-Parent-1` (B0HPKM6Y7W) после загрузки теста `VAR_TEST_series_...` создались как **обычные листинги** (Missing offer, цена 0), а не как Parent: отчёт Amazon показал SUCCESS, но семейства не собрались. Parent-2 (16 child) собрался. Различие: у Parent-1/Parent-2 в child менялись и Color, и модель, у `*-Parent-1` модель была одна. Тема всегда `COLOR/COMPATIBLE_PHONE_MODELS` (решение владельца).
+- SKU `223-Parent-1` и `215-Parent-1` заняты этими листингами, новые Parent нумеруются с 2. Удаление/конвертация этих двух листингов — только по команде владельца.
+- **Новая схема (как Parent-1/Parent-2):** Parent = серия × тип чехла (223) × линейка моделей iPhone (13+13 Pro Max, 14+14 Pro Max, 15 (3), 16 (5), 17 (3); одиночные поколения объединены с соседним), в каждом Parent ≥ 2 модели, принты делятся на части, child ≤ 20, Color = `{принт} - {тип чехла}`, модель разная. Style/Theme в Parent не заполняются (как у Parent-1/2). Заголовки Parent уникальны.
+- Файлы: `VAR_TEST_multi_215-Parent-2_223-Parent-2.xlsm` (2 Parent, 42 строки) и `batches_multi/` (298 Parent, 7 файлов); 300 Parent, 5586 child; `VAR_ALL_mapping.csv`, `VAR_parents_overview.csv`.
