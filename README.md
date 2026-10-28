@@ -1,19 +1,20 @@
 # Variations — MOBILIUS MagSafe cases (серии 223 и 215)
 
-Тема вариации: `COLOR/COMPATIBLE_PHONE_MODELS`, как у живых Parent-1 (B0HNT5PGXT) и Parent-2 (B0HP42GQKQ).
+Эталон: живые семейства Parent-2 (B0HP42GQKQ, iPhone 16 Series, Tokyo Dragon) и Parent-1 (B0HNT5PGXT, iPhone 13 и 13 Pro Max, Little Lamb). Тема `COLOR/COMPATIBLE_PHONE_MODELS`.
 
-## Схема (проверена скриптом на всех файлах)
-- Parent: `223-Parent-N` / `215-Parent-N` (N с 2; `*-Parent-1` заняты тестовыми листингами). Серия × тип чехла (для 223) × линейка моделей iPhone; в каждом Parent ≥ 2 модели, принты делятся на части, child ≤ 20.
-- Child: `Color` = `{принт} - {тип чехла}`, `Compatible Phone Models` = модель iPhone; пара (Color, модель) уникальна во всём каталоге (0 повторов).
-- Parent = Create or Replace (Full Update), child = Edit (Partial Update). Style/Theme в Parent не заполняются (как у Parent-1/2).
-- Живые Parent-1 и Parent-2 остаются на Amazon, их 26 child в новые файлы не входят.
+## Схема (как Parent-1/Parent-2)
+- **1 Parent = 1 принт × 1 поколение iPhone** (13 / 14 / 15 / 16 / 17). Внутри — все типы чехлов обеих серий и все модели поколения.
+- Child: `Color` = `{принт} - {тип чехла}`, `Compatible Phone Models` = модель; пары (Color, модель) уникальны. Child ≤ 16 на Parent.
+- Parent: `Parent-N` (N = 3…935), Create or Replace (Full Update); child: Edit (Partial Update). Заголовок `MOBILIUS MagSafe [Compatible] Case for iPhone … , {принт}`.
+- Почему так: схемы «много принтов в одном Parent» (`*-Parent-1`, `223/215-Parent-2`) Amazon создавал обычными листингами, а не Parent; оба рабочих эталона содержат один принт. Эти файлы — в `_failed_schemes/`.
 
-## Итог проверки
-300 Parent, 5586 child; все child-SKU уникальны и совпадают с `VAR_ALL_mapping.csv`; заголовки Parent уникальны и ≤ 75 символов. Модели в child совпадают с таблицами 215/223 (в «16e / 17e», «17 Pro / 18 Pro» и т.п. записана модель из листинга Amazon).
+## Проверено скриптом
+933 Parent, 5586 child; на каждый Parent один принт; child ≤ 20; пары (Color, модель) уникальны; заголовки уникальны и ≤ 75; набор child = все 5612 SKU серий 223/215 минус 26 child живых Parent-1/2.
+23 семейства с одним child — `VAR_one_child_families.csv`.
 
-## Файлы
-- `VAR_TEST_multi_215-Parent-2_223-Parent-2.xlsm` — тест (2 Parent, 40 child): загружать первым.
-- `batches_multi/` — 7 файлов (215: 2, 223: 5), загружать по порядку после успешного теста.
-- `VAR_DELETE_223-Parent-1_215-Parent-1.xlsm` — удаление двух ошибочных листингов (только по команде владельца).
-- `VAR_ALL_mapping.csv`, `VAR_parents_overview.csv`, `VAR_parents_live.csv` — соответствия; `ANALYSIS_AND_PILOT.md` — история решений.
-- Старые тесты (`VAR_TEST_Parent-1/2`, `VAR_TEST_series_*`) — справочные эталоны.
+## Порядок загрузки
+1. `VAR_DELETE_stray_215-223_Parent-1_Parent-2.xlsm` — удалить 4 ошибочных листинга (`223-Parent-1`, `215-Parent-1`, `223-Parent-2`, `215-Parent-2`). Только по команде владельца.
+2. `VAR_TEST_print_5_parents.xlsm` — тест: 5 Parent (по одному на поколение, Parent-3/189/376/563/749), 30 child. Проверить, что семейства собрались (у Parent открывается «View variations»).
+3. `batches_by_print/VAR_BATCH_01…07` — по очереди, после успешного теста.
+
+Файлы-справочники: `VAR_ALL_mapping.csv`, `VAR_parents_overview.csv`, `VAR_parents_live.csv`, `ANALYSIS_AND_PILOT.md`, эталоны `VAR_TEST_Parent-1.xlsm`, `VAR_TEST_Parent-2_max16.xlsm`.

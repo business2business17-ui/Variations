@@ -65,3 +65,7 @@
 - SKU `223-Parent-1` и `215-Parent-1` заняты этими листингами, новые Parent нумеруются с 2. Удаление/конвертация этих двух листингов — только по команде владельца.
 - **Новая схема (как Parent-1/Parent-2):** Parent = серия × тип чехла (223) × линейка моделей iPhone (13+13 Pro Max, 14+14 Pro Max, 15 (3), 16 (5), 17 (3); одиночные поколения объединены с соседним), в каждом Parent ≥ 2 модели, принты делятся на части, child ≤ 20, Color = `{принт} - {тип чехла}`, модель разная. Style/Theme в Parent не заполняются (как у Parent-1/2). Заголовки Parent уникальны.
 - Файлы: `VAR_TEST_multi_215-Parent-2_223-Parent-2.xlsm` (2 Parent, 42 строки) и `batches_multi/` (298 Parent, 7 файлов); 300 Parent, 5586 child; `VAR_ALL_mapping.csv`, `VAR_parents_overview.csv`.
+
+## 11. Итог теста multi-model (2026-10-28) и возврат к схеме «принт × поколение»
+`223-Parent-2` (B0HPMD9DBP) и `215-Parent-2` (B0HPM46RPX) создались как обычные листинги (Missing offer, цена 0), «View variations» нет, отчёта обработки нет. Построчное сравнение с Parent-1/Parent-2 показало, что отличий в структуре нет; единственное — в рабочих семействах один принт на Parent, в неудачных (single-model и multi-model) принтов много. Решение владельца: делать как Parent-1/Parent-2.
+Возвращена схема «принт × поколение»: 933 Parent (`Parent-3`…`Parent-935`), 5586 child, `batches_by_print/`, тест `VAR_TEST_print_5_parents.xlsm`. Файлы неудачных схем перенесены в `_failed_schemes/`. Для удаления 4 ошибочных листингов — `VAR_DELETE_stray_215-223_Parent-1_Parent-2.xlsm`.
