@@ -69,3 +69,6 @@
 ## 11. Итог теста multi-model (2026-10-28) и возврат к схеме «принт × поколение»
 `223-Parent-2` (B0HPMD9DBP) и `215-Parent-2` (B0HPM46RPX) создались как обычные листинги (Missing offer, цена 0), «View variations» нет, отчёта обработки нет. Построчное сравнение с Parent-1/Parent-2 показало, что отличий в структуре нет; единственное — в рабочих семействах один принт на Parent, в неудачных (single-model и multi-model) принтов много. Решение владельца: делать как Parent-1/Parent-2.
 Возвращена схема «принт × поколение»: 933 Parent (`Parent-3`…`Parent-935`), 5586 child, `batches_by_print/`, тест `VAR_TEST_print_5_parents.xlsm`. Файлы неудачных схем перенесены в `_failed_schemes/`. Для удаления 4 ошибочных листингов — `VAR_DELETE_stray_215-223_Parent-1_Parent-2.xlsm`.
+
+## 12. Результат теста «Parent = модель, тема COLOR» (2026-10-29)
+`VAR_TEST_model_COLOR_iPhone13.xlsm`: семейства собрались — `223-M13-F02` (B0HPM91HGF, 18 вариаций) и `215-M13-Clear` (B0HPM97TKN, 19). Схема принята владельцем. Построены все 60 семейств (`batches_by_model/`, 5586 child). Схему «принт × поколение» (`batches_by_print/`) оставляем запасной.
